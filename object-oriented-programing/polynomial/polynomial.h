@@ -10,20 +10,27 @@ class Polynomial
 {
 public:
     // Constructor
-    Polynomial();
+    Polynomial(int degree);
 
     // Modification member functions
     void setCoef(int k, double value);
-    void setDegree(int degree);
     void clear();
 
     // Accessor functions
     double getCoef(int k) const;
     int getDegree() const;
+    void getPolynomial();
 
     // Overloading Operator
-    // Polynomial operator+(const Polynomial &leftPoly, const Polynomial &rightPoly);
+    friend Polynomial operator+(const Polynomial &leftPoly, const Polynomial &rightPoly);
+    friend Polynomial operator-(const Polynomial &leftPoly, const Polynomial &rightPoly);
+    friend Polynomial operator*(const Polynomial &leftPoly, const Polynomial &rightPoly);
+    friend Polynomial operator+=(const Polynomial &leftPoly, int n);
+    // Polynomial &operator=(const Polynomial &leftPoly, const Polynomial &rightPoly);
     // ostream &operator<<(ostream &out, const Polynomial &p);
+
+    // Destructor
+    ~Polynomial();
 
 private:
     int degree;
