@@ -95,9 +95,7 @@ ostream &operator<<(ostream &out, const Polynomial &p)
 
 int main()
 {
-    int degree;
-    cout << "Bac cua da thuc: ";
-    cin >> degree;
+    int degree = 6;
     Polynomial polyLeft(degree);
     Polynomial polyRight(degree);
     Polynomial poly(degree);
