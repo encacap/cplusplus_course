@@ -1,5 +1,4 @@
 ### C++
-
-Author: Nguyễn Khắc Khánh
-
+<hr>
+Author: Nguyễn Khắc Khánh <br/>
 Contact: encacap@webopers.com | encacap@gmail.com
