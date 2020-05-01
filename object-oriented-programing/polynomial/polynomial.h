@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstring>
 #ifndef POLYNOMIAL
 #define POLYNOMIAL
 
@@ -25,9 +26,11 @@ public:
     friend Polynomial operator+(const Polynomial &leftPoly, const Polynomial &rightPoly);
     friend Polynomial operator-(const Polynomial &leftPoly, const Polynomial &rightPoly);
     friend Polynomial operator*(const Polynomial &leftPoly, const Polynomial &rightPoly);
-    friend Polynomial operator+=(const Polynomial &leftPoly, int n);
-    // Polynomial &operator=(const Polynomial &leftPoly, const Polynomial &rightPoly);
-    // ostream &operator<<(ostream &out, const Polynomial &p);
+    Polynomial &operator=(const Polynomial &poly);
+    Polynomial &operator+=(const Polynomial &poly);
+    Polynomial &operator-=(const Polynomial &poly);
+    Polynomial &operator*=(const Polynomial &poly);
+    friend ostream &operator<<(ostream &out, const Polynomial &p);
 
     // Destructor
     ~Polynomial();

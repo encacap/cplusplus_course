@@ -18,50 +18,103 @@ Polynomial::~Polynomial()
     delete this->coef;
 }
 
-void Polynomial::getPolynomial()
-{
-    for (int i = 0; i < this->degree; i++)
-    {
-        cout << coef[i] << "*x^" << i << " + ";
-    }
-}
-
 Polynomial operator+(const Polynomial &leftPoly, const Polynomial &rightPoly)
 {
-    for (int i = 0; i < leftPoly.degree; i++)
-        leftPoly.coef[i] += rightPoly.coef[i];
-    return leftPoly;
+    Polynomial result(6);
+    for (int i = 0; i < result.degree; i++)
+        result.coef[i] = leftPoly.coef[i] + rightPoly.coef[i];
+    return result;
 }
 
 Polynomial operator-(const Polynomial &leftPoly, const Polynomial &rightPoly)
 {
-    for (int i = 0; i < leftPoly.degree; i++)
-        leftPoly.coef[i] -= rightPoly.coef[i];
-    return leftPoly;
+    Polynomial result(6);
+    for (int i = 0; i < result.degree; i++)
+        result.coef[i] = leftPoly.coef[i] - rightPoly.coef[i];
+    return result;
 }
 
 Polynomial operator*(const Polynomial &leftPoly, const Polynomial &rightPoly)
 {
-    for (int i = 0; i < leftPoly.degree; i++)
-        leftPoly.coef[i] *= rightPoly.coef[i];
-    return leftPoly;
+    Polynomial result(6);
+    for (int i = 0; i < result.degree; i++)
+        result.coef[i] = leftPoly.coef[i] * rightPoly.coef[i];
+    return result;
+}
+
+Polynomial &Polynomial::operator=(const Polynomial &poly)
+{
+    for (int i = 0; i < poly.degree; i++)
+    {
+        this->coef[i] = poly.coef[i];
+    }
+    return *this;
+}
+
+Polynomial &Polynomial::operator+=(const Polynomial &poly)
+{
+    for (int i = 0; i < this->degree; i++)
+    {
+        this->coef[i] += poly.coef[i];
+    }
+    return *this;
+}
+
+Polynomial &Polynomial::operator-=(const Polynomial &poly)
+{
+    for (int i = 0; i < this->degree; i++)
+    {
+        this->coef[i] -= poly.coef[i];
+    }
+    return *this;
+}
+
+Polynomial &Polynomial::operator*=(const Polynomial &poly)
+{
+    for (int i = 0; i < this->degree; i++)
+    {
+        this->coef[i] *= poly.coef[i];
+    }
+    return *this;
+}
+
+ostream &operator<<(ostream &out, const Polynomial &p)
+{
+    for (int i = p.degree - 1; i >= 0; i--)
+    {
+        if (i > 1)
+            out << p.coef[i] << "x^" << i << " + ";
+        else if (i == 1)
+            out << p.coef[i] << "x"
+                << " + ";
+        else if (i == 0)
+            out << p.coef[i];
+    }
+    return out;
 }
 
 int main()
 {
-    Polynomial polyLeft(6);
-    Polynomial polyRight(6);
-    Polynomial poly(6);
+    int degree;
+    cout << "Bac cua da thuc: ";
+    cin >> degree;
+    Polynomial polyLeft(degree);
+    Polynomial polyRight(degree);
+    Polynomial poly(degree);
     polyLeft.setCoef(0, 2);
     polyLeft.setCoef(1, 10);
     polyLeft.setCoef(2, 4);
     polyLeft.setCoef(5, 1);
     polyRight.setCoef(0, 2);
-    polyRight.setCoef(1, 5);
+    polyRight.setCoef(1, 1);
     polyRight.setCoef(2, 1);
     polyRight.setCoef(4, 6);
     poly = polyLeft + polyRight;
+    cout << poly << endl;
     poly = polyLeft - polyRight;
-    poly.getPolynomial();
+    cout << poly << endl;
+    cout << polyLeft << endl;
+    polyLeft += polyRight;
+    cout << polyLeft << endl;
     return 0;
 }
