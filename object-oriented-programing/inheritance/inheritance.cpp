@@ -10,30 +10,40 @@ void BieuThucSoHoc::createQuestion()
 {
     this->level = this->randomNumber(1, 5);
     this->point = level;
-    switch (level)
+
+    if (level == 1)
     {
-    case 1:
         this->max = 10;
         this->pheptoan = strdup("+");
-        break;
-    case 2:
+        return;
+    }
+
+    if (level == 2)
+    {
         this->max = 10;
         this->pheptoan = strdup("+-");
-        break;
-    case 3:
+        return;
+    }
+
+    if (level == 3)
+    {
         this->max = 10;
         this->pheptoan = strdup("+-*");
-        break;
-    case 4:
+        return;
+    }
+
+    if (level == 4)
+    {
         this->max = 100;
         this->pheptoan = strdup("+-");
-        break;
-    case 5:
+        return;
+    }
+
+    if (level == 5)
+    {
         this->max = 100;
         this->pheptoan = strdup("+-*");
-        break;
-    default:
-        break;
+        return;
     }
 }
 
