@@ -28,7 +28,7 @@ void BieuThucSoHoc::createQuestion()
     if (level == 3)
     {
         this->max = 10;
-        this->pheptoan = strdup("+-*");
+        this->pheptoan = strdup("+-*/");
         return;
     }
 
@@ -42,7 +42,7 @@ void BieuThucSoHoc::createQuestion()
     if (level == 5)
     {
         this->max = 100;
-        this->pheptoan = strdup("+-*");
+        this->pheptoan = strdup("+-*/");
         return;
     }
 }
@@ -63,9 +63,9 @@ int BieuThucSoHoc::printQuestion()
     this->point = this->level;
     int level = this->level;
     int length = strlen(this->pheptoan);
-    int operands[7] = {0};
-    int operators[7] = {0};
-    int result = 0;
+    int operands[9] = {0};
+    int operators[9] = {0};
+    float result = 0;
     cout << LINE << endl;
     cout << "Level: " << level << endl;
     cout << "Current score: " << this->score << endl;
@@ -88,7 +88,7 @@ int BieuThucSoHoc::printQuestion()
 
     cout << " = ";
 
-    for (int i = 0; i < 7; i++)
+    for (int i = 0; i < 9; i++)
         if (operators[i] == 3)
         {
             if (operands[i - 1] == 0)
@@ -103,12 +103,25 @@ int BieuThucSoHoc::printQuestion()
             }
             operators[i] = 0;
         }
+        else if (operators[i] == 4)
+        {
+            if (operands[i - 1] == 0)
+            {
+                result /= (float)operands[i + 1];
+                operands[i + 1] = 0;
+            }
+            else
+            {
+                result += (float)operands[i - 1] / operands[i + 1];
+                operands[i - 1] = operands[i + 1] = 0;
+            }
+        }
 
-    for (int i = 0; i < 7; i++)
+    for (int i = 0; i < 9; i++)
     {
         if (operators[i] == 1)
             result += operands[i - 1] + operands[i + 1];
-        else
+        else if (operators[i] == 2)
             result += operands[i - 1] - operands[i + 1];
         operands[i - 1] = operands[i + 1] = 0;
     }
@@ -125,12 +138,13 @@ int main()
 {
     srand((int)time(0));
     int questionsPerTurn = 5; // Number of questions per turn
-    int answer;
-    int question = 0;
+    float answer;
+    float question = 0;
     BieuThucSoHoc expresstions;
     BieuThucCong plusExpresstions;
     cout << "Each round will have " << questionsPerTurn << " question." << endl;
     cout << "The number of points received will correspond to the level of the question" << endl;
+    cout << "**Note: For division, the result only takes integer part" << endl;
     for (int i = 0; i < questionsPerTurn; i++)
     {
         question = expresstions.printQuestion();
@@ -146,6 +160,9 @@ int main()
         }
         cout << endl;
     }
+
+    cout << LINE << endl;
+    cout << "Finish! Your score: " << expresstions.score;
 
     return 0;
 }
