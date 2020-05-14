@@ -142,27 +142,27 @@ int main()
     float question = 0;
     BieuThucSoHoc expresstions;
     BieuThucCong plusExpresstions;
-    cout << "Each round will have " << questionsPerTurn << " question." << endl;
-    cout << "The number of points received will correspond to the level of the question" << endl;
-    cout << "**Note: For division, the result only takes integer part" << endl;
+    cout << "Moi luot choi se co " << questionsPerTurn << " cau hoi." << endl;
+    cout << "So diem ban nhan duoc o moi luot tuong duong voi cap do cua cau hoi" << endl;
+    cout << "**Chu y: Doi voi phep chia, ket qua chi lay phan nguyen!" << endl;
     for (int i = 0; i < questionsPerTurn; i++)
     {
         question = expresstions.printQuestion();
         cin >> answer;
         if (answer == question)
         {
-            cout << "Congratulation!";
+            cout << "Chinh xac!";
             expresstions.updateScore();
         }
         else
         {
-            cout << "Incorrect";
+            cout << "Khong chinh xac!";
         }
         cout << endl;
     }
 
     cout << LINE << endl;
-    cout << "Finish! Your score: " << expresstions.score;
+    cout << "Key thuc! Tong so diem cua ban la: " << expresstions.score;
 
     return 0;
 }
