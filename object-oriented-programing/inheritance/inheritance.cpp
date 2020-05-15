@@ -67,8 +67,8 @@ int BieuThucSoHoc::printQuestion()
     int operators[9] = {0};
     float result = 0;
     cout << LINE << endl;
-    cout << "Level: " << level << endl;
-    cout << "Current score: " << this->score << endl;
+    cout << "Cap do: " << level << endl;
+    cout << "Diem hien tai: " << this->score << endl;
     cout << ">> ";
     for (int i = 0; i <= length * 2; i++)
     {
